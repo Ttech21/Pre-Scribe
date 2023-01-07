@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pre-Scribe</title>
+</head>
+<body>
+
+<ul>
+    <li><a href="{% url 'registration' %}">Register</a></li>
+    <li><a href="{% url 'login' %}">Login</a></li>
+    <li><a href="{% url 'logout' %}">logout</a></li>
+</ul>
+
+{% if request.user.is_authenticated %}
+    <p>{{ request.user.username }}</p>
+{% endif %}
+{% block content %}
+
+{% endblock content %}
+
+</body>
+</html>
