@@ -2,7 +2,7 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, redirect
-from .form import CustomUserCreationForm
+from .forms import CustomUserCreationForm
 from django.contrib.auth.models import User
 # Create your views here.
 
@@ -47,7 +47,7 @@ def login_user(request):
     # if request.user.is_authenticated:
     #     return redirect('login')
     if request.method == "POST":
-        username = request.POST['username']
+        username = request.POST['username'].lower()
         password = request.POST['password']
 
         try:
