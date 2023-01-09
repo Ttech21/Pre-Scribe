@@ -7,7 +7,7 @@ from django.utils.text import slugify
 
 
 class Profile(models.Model):
-    owner = models.OneToOneField(User,on_delete=models.CASCADE)
+    user = models.OneToOneField(User,on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
     user_name = models.CharField(max_length=200)
     email = models.EmailField()
@@ -97,7 +97,7 @@ class Advice(models.Model):
 
 class Patient(models.Model):
     name = models.CharField(max_length=100)
-    age = models.IntegerField(max_length=200)
+    age = models.PositiveIntegerField(default=0)
     phone_number = models.CharField(max_length=20)
     id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
 
