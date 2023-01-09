@@ -1,11 +1,10 @@
 *.sqlite3
-.env
 migrations/**
 **/migrations
 .idea
 venv/**
+env/**
 __pycache__/**
 migrations
 **/__pycache__
-*.pyc
 *.pyc
