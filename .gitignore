@@ -1,11 +1,12 @@
+*.sqlite3
 migrations/**
 **/migrations
 .idea
 venv/**
+env/**
 __pycache__/**
 migrations
 **/__pycache__
 *.pyc
 *.pyc
-db.sqlite3
-db.sqlite3-journal
+
