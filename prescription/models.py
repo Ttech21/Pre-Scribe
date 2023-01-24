@@ -2,7 +2,7 @@ import uuid
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.text import slugify
-
+from django.core.validators import FileExtensionValidator
 # Create your models here.
 
 
@@ -32,10 +32,10 @@ class Profile(models.Model):
 
 
 class MedicineTypes(models.TextChoices):
-    Tablet = 'TABLET', 'Tab.'
-    Syrup = 'SYRUP', 'Syp.'
-    Injection = 'INJECTION', 'Inj.'
-    Saline = 'SALINE','Sal.'
+    Tablet = 'Tablet', 'Tablet'
+    Syrup = 'Syrup', 'Syrup.'
+    Injection = 'Injection', 'Injection'
+    Saline = 'Saline','Saline.'
 
 
 class Medicine(models.Model):
@@ -74,7 +74,7 @@ class MedicineDuration(models.TextChoices):
     Option5 = '1 MONTH', '1 Month'
 
 
-class MedicineUses(models.Model):
+class MedicineUsage(models.Model):
     dose = models.CharField(max_length=50,choices=MedicineDose.choices,blank=True,null=True)
     instruction = models.CharField(max_length=50,choices=MedicineInstruction.choices,blank=True,null=True)
     duration = models.CharField(max_length=50,choices=MedicineDuration.choices,blank=True,null=True)
@@ -103,3 +103,22 @@ class Patient(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Prescription(models.Model):
+    doctor = models.ForeignKey(Profile,blank=True,null=True,on_delete=models.SET_NULL)
+    medicine = models.ManyToManyField(Medicine,blank=True,null=True)
+    medicine_usage = models.ForeignKey(MedicineUsage,blank=True,null=True,on_delete=models.SET_NULL)
+    advice = models.ManyToManyField(Advice,blank=True,null=True)
+    patient = models.ForeignKey(Patient,blank=True,null=True,on_delete=models.SET_NULL)
+
+    id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
+
+    def __str__(self):
+        return self.patient.name
+
+# model for uploading csv/excel file for bulk create
+class FileUpload(models.Model):
+    file = models.FileField(upload_to='files/',validators=[FileExtensionValidator(['csv', 'xls', 'xlsx'])])
+    used = models.BooleanField(default=False)
+
