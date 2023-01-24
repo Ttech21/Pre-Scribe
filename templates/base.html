@@ -5,6 +5,7 @@
     <title>Pre-Scribe</title>
   </head>
   <body>
+  {% include 'navbar.html' %}
     <h1>Welcome to Pre-Scribe</h1>
     <ul>
       <li><a href="{% url 'registration' %}">Register</a></li>
@@ -14,6 +15,9 @@
 
     {% if request.user.is_authenticated %}
     <p>{{ request.user.username }}</p>
-    {% endif %} {% block content %} {% endblock content %}
+    {% endif %}
+      {% block content %}
+
+      {% endblock content %}
   </body>
 </html>
