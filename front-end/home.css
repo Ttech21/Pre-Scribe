@@ -1,0 +1,109 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+.navbar {
+  height: 60px;
+  background-color: #406882;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.navbar p {
+  position: absolute;
+  left: 40px;
+  font-size: 40px;
+  color: #ffffff;
+}
+.navbar p a {
+  text-decoration: none;
+  font-size: 35px;
+  color: #ffffff;
+}
+
+.navbar li {
+  list-style-type: none;
+  width: 100px;
+}
+
+.navbar li a {
+  font-size: 15px;
+  color: #ffffff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.navbar li:hover {
+  text-decoration-line: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 8px;
+  cursor: pointer;
+}
+.btn {
+  position: absolute;
+  right: 20px;
+  background-color: #1b4d89;
+  border: none;
+  width: 90px;
+  height: 32px;
+  border-radius: 5px;
+}
+.btn a {
+  padding: 10px;
+  font-size: 15px;
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: 700;
+}
+.btn:hover {
+  background-color: #1c7635;
+}
+
+.headline {
+  margin-top: 100px;
+  text-align: center;
+}
+.headline i {
+  font-size: 150px;
+  margin-bottom: 30px;
+}
+.headline h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.createPresbtn {
+  background-color: #1b4d89;
+  width: 120px;
+  height: 60px;
+  border: none;
+  border-radius: 15px;
+  margin: 0px 20px;
+}
+input {
+  text-decoration: none;
+  text-align: center;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.createPresbtn:hover {
+  background-color: #1c7635;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  height: 60px;
+  width: 100%;
+  background-color: #406882;
+}
+
+footer p {
+  padding-top: 25px;
+  text-align: center;
+  color: #ffffff;
+}

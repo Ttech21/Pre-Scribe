@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./makePrescription.css" />
+    <title>Make Prescription</title>
+  </head>
+  <body>
+    <nav>
+      <ul class="navbar">
+        <p>
+          <i class="fa-sharp fa-solid fa-stethoscope"></i
+          ><a href="#">Pre-Scribe</a>
+        </p>
+        <li><a href="./home.html">Home</a></li>
+        <li><a href="./profile.html">Profile</a></li>
+        <li><a href"#">About Us</a></li>
+        <li><a href"#">Our Services</a></li>
+        <button type="submit" class="btn">
+          <a href="./loginPage.html">Sign Out</a>
+        </button>
+      </ul>
+    </nav>
+    <main>
+      <div class="patient">
+        <div class="patientInfo">
+          <div class="labelText">
+            <label for="PatientName">Patient Name:</label>
+          </div>
+          <input type="text" name="PatientName" id="name-numberBox" />
+        </div>
+        <div class="patientInfo">
+          <div class="labelText">
+            <label for="Gender">Gender:</label>
+          </div>
+          <select id="Gender" name="Gender">
+            <option value="">Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="patientInfo">
+          <div class="labelText">
+            <label for="age">Age:</label>
+          </div>
+          <input type="number" id="age" name="age" min="1" max="100" />
+        </div>
+        <div class="patientInfo">
+          <div class="labelText">
+            <label for="PhoneNumber">Phone Number:</label>
+          </div>
+          <input type="text" name="PhoneNumber" id="name-numberBox" />
+        </div>
+        <div class="patientInfo">
+          <div class="labelText">
+            <label for="Date">Date:</label>
+          </div>
+          <input type="date" id="Date" name="Date" />
+        </div>
+      </div>
+      <hr />
+      <div class="prescriptionBody">
+        <div class="patientQueries">
+          <div class="textarea-container">
+            <label id="Querieslabel">Complaints</label>
+            <textarea></textarea>
+          </div>
+          <div class="textarea-container">
+            <label id="Querieslabel2">Diagnosis</label>
+            <textarea></textarea>
+          </div>
+          <div class="textarea-container">
+            <label id="Querieslabel3">Investigation</label>
+            <textarea></textarea>
+          </div>
+        </div>
+        <div class="doctorGuides">
+          <div class="insertMedicineSection">
+            <div class="medicineListLabel">
+              <p>Insert Medicine</p>
+            </div>
+            <div class="prescribeMedicine">
+              <div class="drugList">
+                <input placeholder="Drug Name" type="text" id="inputField" />
+              </div>
+              <div class="doses">
+                <input type="text" placeholder="Doses" list="doses" id="inputField" />
+                <datalist id="doses">
+                <option>0+0+1</option>
+                <option>0+1+0</option>
+                <option>0+1+1</option>
+                <option>1+0+0</option>
+                <option>1+0+1</option>
+                <option>1+1+0</option>
+                <option>1+1+1</option>
+                </datalist>
+              </div>
+              <div class="condition">
+                <select id="inputField">
+                  <option value="">Select Condition</option>
+                  <option value="beforeMeal">Before Meal</option>
+                  <option value="afterMeal">After Meal</option>
+                </select>
+              </div>
+              <div class="duration">
+                <input type="number" name="duration" placeholder="Duration" id="duration" id="inputField">
+                <select id="duration">
+                  <option value="day">Days</option>
+                  <option value="weeks">Weeks</option>
+                  <option value="months">Months</option>
+                  <option value="years">Years</option>
+                </select>
+              </div>
+            </div>
+            <button type="submit" class="drugAddButton" onclick="displayInput()"><a href="#">Add</a></button>
+          </div>
+          <div class="medicineListSection">
+            <div class="medicineListLabel">
+              <p>Medicine List</p>
+            </div>
+            <div class="medicineList" id="displayDiv">
+
+            </div>
+          </div>
+          <div class="adviceSection">
+            <div class="medicineListLabel"><p>General Advice</p></div>
+            <textarea name="generalAdvice" id="generalAdvice" cols="30" rows="10"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="actionButtons">
+        <button type="submit"><a href="#">Create New</a></button>
+        <button type="submit""><a href="./prescription.html">Proceed to Print</a></button>
+      </div>
+    </main>
+
+    <footer>
+      <p>
+        Copyright &copy;
+        <script>
+          document.write(new Date().getFullYear());
+        </script>
+        Pre-Scribe All Rights Reserved
+      </p>
+    </footer>
+    <script src="./makePrescription.js"></script>
+  </body>
+</html>
