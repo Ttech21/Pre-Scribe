@@ -33,10 +33,9 @@ class Profile(models.Model):
 
 class MedicineTypes(models.TextChoices):
     Tablet = 'Tablet', 'Tablet'
-    Syrup = 'Syrup', 'Syrup.'
+    Syrup = 'Syrup', 'Syrup'
     Injection = 'Injection', 'Injection'
-    Saline = 'Saline','Saline.'
-
+    Saline = 'Saline','Saline'
 
 class Medicine(models.Model):
     name = models.CharField(max_length=200)
@@ -46,9 +45,6 @@ class Medicine(models.Model):
 
     def __str__(self):
         return self.name + " " + self.group
-
-
-###################################################
 
 
 class MedicineDose(models.TextChoices):
@@ -74,14 +70,8 @@ class MedicineDuration(models.TextChoices):
     Option5 = '1 MONTH', '1 Month'
 
 
-class MedicineUsage(models.Model):
-    dose = models.CharField(max_length=50,choices=MedicineDose.choices,blank=True,null=True)
-    instruction = models.CharField(max_length=50,choices=MedicineInstruction.choices,blank=True,null=True)
-    duration = models.CharField(max_length=50,choices=MedicineDuration.choices,blank=True,null=True)
-    id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
 
-    def __str__(self):
-        return self.dose + " " + self.instruction + " " + self.duration
+
 
 #########################################################
 
@@ -95,6 +85,11 @@ class Advice(models.Model):
         return self.title
 
 
+class Investigation(models.Model):
+    name = models.CharField(max_length=100,blank=True,null=True)
+    id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
+
+
 class Patient(models.Model):
     name = models.CharField(max_length=100)
     age = models.PositiveIntegerField(default=0)
@@ -105,17 +100,41 @@ class Patient(models.Model):
         return self.name
 
 
+class InitialExamination(models.Model):
+    pulse = models.PositiveIntegerField(blank=True,null=True)
+    temperature = models.PositiveIntegerField(blank=True,null=True)
+    bp_upper = models.PositiveIntegerField(blank=True,null=True)
+    bp_lower = models.PositiveIntegerField(blank=True,null=True)
+
+
 class Prescription(models.Model):
-    doctor = models.ForeignKey(Profile,blank=True,null=True,on_delete=models.SET_NULL)
-    medicine = models.ManyToManyField(Medicine,blank=True,null=True)
-    medicine_usage = models.ForeignKey(MedicineUsage,blank=True,null=True,on_delete=models.SET_NULL)
-    advice = models.ManyToManyField(Advice,blank=True,null=True)
+    doctor = models.ForeignKey(Profile, blank=True, null=True, on_delete=models.SET_NULL)
+    complaints = models.TextField(blank=True,null=True)
+    diagnosis = models.TextField(blank=True,null=True)
+    investigation = models.ManyToManyField(Investigation,blank=True)
+    advice = models.ManyToManyField(Advice,blank=True)
     patient = models.ForeignKey(Patient,blank=True,null=True,on_delete=models.SET_NULL)
+    initial_examination = models.ForeignKey(InitialExamination,blank=True,null=True,on_delete=models.SET_NULL)
 
     id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
 
     def __str__(self):
         return self.patient.name
+
+
+
+class MedicineUsage(models.Model):
+    prescription = models.ForeignKey(Prescription,blank=True,null=True,on_delete=models.SET_NULL)
+    medicine = models.ForeignKey(Medicine,blank=True,null=True,on_delete=models.SET_NULL)
+    dose = models.CharField(max_length=50,choices=MedicineDose.choices,blank=True,null=True)
+    instruction = models.CharField(max_length=50,choices=MedicineInstruction.choices,blank=True,null=True)
+    duration = models.CharField(max_length=50,choices=MedicineDuration.choices,blank=True,null=True)
+    id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
+
+    def __str__(self):
+        return str(self.id)
+        # return self.dose + " " + self.instruction + " " + self.duration
+
 
 # model for uploading csv/excel file for bulk create
 class FileUpload(models.Model):

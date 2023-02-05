@@ -8,4 +8,6 @@ urlpatterns = [
 
     path("prescription-create/", views.prescription_create,name="prescription-create"),
     path("profile/", views.profile,name="profile"),
+    path("medicine-bulk-add/", views.medicine_bulk_add,name="medicine-bulk-add"),
+    path("advice-bulk-add/", views.advice_bulk_add,name="advice-bulk-add"),
 ]

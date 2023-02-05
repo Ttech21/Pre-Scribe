@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "prescription.apps.PrescriptionConfig",
+    "rest_framework",
 ]
 
 MIDDLEWARE = [

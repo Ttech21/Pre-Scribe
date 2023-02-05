@@ -2,10 +2,10 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, redirect
-from .forms import CustomUserCreationForm,PrescriptionForm,MedicineUsageForm,PatientForm,FileUploadForm
+from .forms import CustomUserCreationForm,PrescriptionForm,MedicineUsageForm,PatientForm,InitialExaminationForm,FileUploadForm
 from django.contrib.auth.models import User
-from .models import Medicine,MedicineTypes,FileUpload
-import csv
+from .models import Medicine,MedicineTypes,MedicineUsage,Advice,Investigation,FileUpload
+from openpyxl import load_workbook
 # Create your views here.
 
 
@@ -78,68 +78,138 @@ def profile(request):
     choices = MedicineTypes.choices
 
     form = FileUploadForm()
-    if request.method == "POST":
-        form = FileUploadForm(request.POST,request.FILES)
-        if form.is_valid():
-            form.save()
-            obj = FileUpload.objects.get(used=False)
-            with open(obj.file.path, 'r',) as f:
-                reader = csv.reader(f)
-                for i,row in enumerate(reader):
-                    if i==0:
-                        pass
-                    else:
-
-                        name = row[0]
-                        group = row[1]
-                        type = row[2]
-
-                        if type in choices:
-                            index = choices.index(type)
-                        else:
-                            index=0
-                        Medicine.objects.create(
-                            name=name,
-                            group =group,
-                            type = MedicineTypes("Tablet")
-                        )
-                obj.used =True
-                obj.save()
-
 
     context={
         'form':form
     }
     return render(request,'prescription/profile.html',context)
 
+
+def medicine_bulk_add(request):
+    form = FileUploadForm()
+    if request.method == "POST":
+        form = FileUploadForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            excel = FileUpload.objects.get(used=False)
+            wb = load_workbook(excel.file.path)
+            sheet = wb.active
+
+            for row in sheet.iter_rows(min_row=sheet.min_row+1,
+                                       max_row=sheet.max_row,
+                                       min_col=sheet.min_column,
+                                       max_col=sheet.max_column):
+                val = [data.value for data in row]
+                name = val[0]
+                group = val[1]
+                type = val[2]
+
+                if type == MedicineTypes.Tablet or type == MedicineTypes.Injection or type == MedicineTypes.Saline:
+                    type = MedicineTypes.Tablet
+                elif type == MedicineTypes.Syrup:
+                    type = MedicineTypes.Syrup
+                elif type == MedicineTypes.Injection:
+                    type = MedicineTypes.Injection
+                elif type == MedicineTypes.Saline:
+                    type = MedicineTypes.Saline
+                else:
+                    type = MedicineTypes.Tablet
+
+                Medicine.objects.get_or_create(
+                    name=name,
+                    group=group,
+                    type=type
+                )
+            excel.used = True
+            excel.save()
+
+    context={
+        'form':form
+    }
+
+    return render(request,'prescription/bulk-add.html',context)
+
+
+def advice_bulk_add(request):
+    form = FileUploadForm()
+    if request.method == "POST":
+        form = FileUploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            excel = FileUpload.objects.get(used=False)
+            wb = load_workbook(excel.file.path)
+            sheet = wb.active
+
+            for row in sheet.iter_rows(min_row=sheet.min_row + 1,
+                                       max_row=sheet.max_row,
+                                       min_col=1,
+                                       max_col=1):
+                for data in row:
+                    val = data.value
+                    Advice.objects.get_or_create(doctor=request.user.profile,title=val)
+
+            excel.used = True
+            excel.save()
+
+    context = {
+        'form': form
+    }
+
+    return render(request, 'prescription/bulk-add.html', context)
+
 @login_required(login_url='login')
 def prescription_create(request):
-    user = request.user
-    doctor = user.profile
-    prescription_form = PrescriptionForm(profile=doctor)
+    profile = request.user.profile
+    prescription_form = PrescriptionForm()
     medicine_usage_form = MedicineUsageForm()
     patient_form = PatientForm()
+    initial_examination_form = InitialExaminationForm()
 
     if request.method == 'POST':
-        prescription_form = PrescriptionForm(doctor,request.POST,prefix='prescription')
+        advices = request.POST.get("advice").replace(', ',',').split(",")
+        advices.pop()
+        investigations = request.POST.get("advice").replace(', ',',').split(",")
+        investigations.pop()
+
+        prescription_form = PrescriptionForm(request.POST,prefix='prescription')
         medicine_usage_form = MedicineUsageForm(request.POST,prefix='medicineusage')
         patient_form = PatientForm(request.POST,prefix='patient')
+        initial_examination_form = InitialExaminationForm(request.POST,prefix='initialexamination')
 
-        if prescription_form.is_valid() and medicine_usage_form.is_valid() and patient_form.is_valid():
+        if prescription_form.is_valid() and patient_form.is_valid() and initial_examination_form.is_valid():
             prescription = prescription_form.save(commit=False)
-            medicine_usage = medicine_usage_form.save()
             patient = patient_form.save()
-            prescription.doctor = doctor
+            initial_examination = initial_examination_form.save()
+            prescription.doctor = profile
             prescription.patient = patient
-            prescription.medicine_usage = medicine_usage
+            prescription.initial_examination= initial_examination
             prescription.save()
 
+            for advice in advices:
+                advice,created = Advice.objects.get_or_create(title=advice,doctor=request.user.profile)
+                prescription.advice.add(advice)
+
+            for investigation in investigations:
+                investigation, created = Investigation.objects.get_or_create(name=investigation)
+                prescription.investigation.add(investigation)
+
+            medicines = MedicineUsage.objects.filter(prescription__isnull=True)
+            for medicine in medicines:
+                medicine.prescription = prescription
+                medicine.save()
+
+            prescription_form = PrescriptionForm()
+            medicine_usage_form = MedicineUsageForm()
+            patient_form = PatientForm()
+            initial_examination_form = InitialExaminationForm()
 
     context={
         'prescription_form':prescription_form,
         'medicine_usage_form':medicine_usage_form,
         'patient_form': patient_form,
+        'initial_examination_form':initial_examination_form
     }
 
     return render(request,'prescription/prescription-create.html',context)
+
 
