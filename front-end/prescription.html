@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./prescription.css" />
+    <title>Prescription Page</title>
+  </head>
+  <body>
+    <div class="doctorInfo">
+      <h2><a href="#">Doctor Name</a></h2>
+      <p><a href="#">Doctor Qualification</a></p>
+      <h4><a href="#">Medical Name</a></h4>
+      <p>
+        Visit Time: <a href="#">From thisday</a> to <a href="#">thisday</a> at
+        <a href="#">this time</a> to <a href="#">this time</a>
+      </p>
+      <p>Phone: <a href="#">Doctor Phone Number</a></p>
+    </div>
+    <hr class="firsthr" />
+    <div class="patientInfo">
+      <p>Patient Name: <a href="#">Miraj Hossain</a></p>
+      <p>Gender: <a href="#">Male</a></p>
+      <p>Age: <a href="#">25</a></p>
+      <p>Phone: <a href="#">01301972616</a></p>
+      <p>Date: <a href="#">02/02/2023</a></p>
+    </div>
+    <hr class="secondhr">
+        <div class="patientSection">
+          <div class="complaints">
+            <h3>Patient Complaints</h3>
+            <ol class="complaintsList">
+              <li><a href="#">patient complaint 1</a></li>
+              <li><a href="#">patient complaint 2</a></li>
+            </ol>
+          </div>
+          <div class="diagnosis">
+            <h3>Diagnosis</h3>
+            <ol class="diagnosisList">
+              <li><a href="#">patient complaint 1</a></li>
+              <li><a href="#">patient complaint 2</a></li>
+            </ol>
+          </div>
+          <div class="investigations">
+            <h3>Investigations</h3>
+            <ol class="investigationsList">
+              <li><a href="#">patient complaint 1</a></li>
+              <li><a href="#">patient complaint 2</a></li>
+            </ol>
+          </div>
+        </div>
+      <div class="doctorSection">
+        <div class="medicineSection">
+          <h1>R<span>x.</span></h1>
+          <ol class="medicineList">
+            <li><a href="#">napa extra 500mg</a></li>
+          </ol>
+        </div>
+        <div class="adviceSection">
+          <div class="adviceLabel">
+            <p>General Advises</p>
+          </div>
+          <div class="adviceBox"></div>
+        </div>
+      </div>
+    </div>
+    <button class="printbtn" onclick="myFunction()">Print</button>
+    <script>
+        function myFunction(){
+            print();
+        }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./loginPage.css" />
+    <title>Welcome to Pre-Scribe</title>
+  </head>
+  <body>
+    <div class="mainBody">
+      <div class="photoSide">
+        <img src="./images/consulting.png" alt="Pre-Scribe" srcset="" />
+      </div>
+      <div class="formSide">
+        <h2>Welcome!</h2>
+        <form class="form">
+          <div class="input-group">
+            <div class="icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <input
+              type="text"
+              class="input-box"
+              placeholder="Email or Phone Number"
+            />
+          </div>
+          <div class="input-group">
+            <div class="icon">
+              <i class="fas fa-lock"></i>
+            </div>
+            <input
+              type="password"
+              class="input-box"
+              id="password"
+              placeholder="Password"
+            />
+            <i
+              class="fas fa-eye-slash show-hide-icon"
+              onclick="showHidePassword()"
+            ></i>
+          </div>
+          <div class="passwordValidation">
+            <div class="remember">
+              <input
+                type="checkbox"
+                id="rememberME"
+                name="rememberME"
+                value="rememberME"
+              />
+              <label for="rememberME"> Remember Me</label>
+            </div>
+            <div class="forgotPass">
+              <a href="./forgotPass.html" class="href">Forgotten Password?</a>
+            </div>
+          </div>
+          <button type="submit" class="btn signIn">
+            <a href="./home.html">Sign In</a>
+          </button>
+          <button type="submit" class="btn signUp">
+            <a href="./registration.html">Create a New Account</a>
+          </button>
+        </form>
+      </div>
+    </div>
+    <script src="./loginPage.js"></script>
+  </body>
+</html>

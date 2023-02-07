@@ -1,0 +1,308 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  font-family: "ABeeZee", sans-serif;
+}
+
+.navbar {
+  height: 60px;
+  background-color: #406882;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.navbar p {
+  position: relative;
+  left: -333px;
+  font-size: 40px;
+  color: #ffffff;
+}
+.navbar p a {
+  text-decoration: none;
+  font-size: 35px;
+  color: #ffffff;
+  font-weight: normal;
+}
+
+.navbar li {
+  list-style-type: none;
+  width: 100px;
+}
+
+.navbar li a {
+  font-size: 15px;
+  color: #ffffff;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+.navbar li:hover {
+  text-decoration-line: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 8px;
+  cursor: pointer;
+}
+.btn {
+  position: absolute;
+  right: 20px;
+  background-color: #1b4d89;
+  border: none;
+  width: 90px;
+  height: 32px;
+  border-radius: 5px;
+}
+.btn a {
+  padding: 10px;
+  font-size: 15px;
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: bold;
+}
+.btn:hover {
+  background-color: #1c7635;
+}
+main {
+  background-color: #7b8fa1;
+  padding-bottom: 100px;
+}
+
+.patient {
+  padding-top: 20px;
+  display: flex;
+  flex-direction: row;
+}
+.patientInfo {
+  display: flex;
+  flex-direction: row;
+  margin-left: 25px;
+}
+.patientInfo input {
+  margin-left: 5px;
+  border-radius: 10px;
+  border: none;
+  padding-left: 5px;
+}
+.patientInfo select {
+  margin-left: 5px;
+  border-radius: 10px;
+  border: none;
+}
+.labelText {
+  font-size: 20px;
+  margin-top: 8px;
+}
+#name-numberBox {
+  width: 200px;
+}
+#Gender {
+  width: 120px;
+  height: 40px;
+}
+#Gender option {
+  font-size: 15px;
+}
+#age {
+  width: 70px;
+}
+hr {
+  margin: 20px 0px;
+  height: 1px;
+  color: #d9d9d9;
+  box-shadow: #b9bbc6;
+}
+.prescriptionBody {
+  display: flex;
+  flex-direction: row;
+}
+.patientQueries {
+  margin-left: 50px;
+}
+.textarea-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 350px;
+  padding: 20px;
+}
+
+textarea {
+  width: 100%;
+  height: 200px;
+  padding: 5px;
+  font-size: 16px;
+  padding-top: 25px;
+  border-radius: 15px;
+}
+
+#Querieslabel {
+  position: relative;
+  top: 16px;
+  left: 30px;
+  height: 20px;
+  width: 100px;
+  background-color: #546f87;
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 10px;
+  padding: 5px;
+  text-align: center;
+}
+#Querieslabel2 {
+  position: relative;
+  top: 17px;
+  left: 30px;
+  height: 20px;
+  width: 100px;
+  background-color: #546f87;
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 10px;
+  padding: 5px;
+  text-align: center;
+}
+#Querieslabel3 {
+  position: relative;
+  top: 17px;
+  left: 30px;
+  height: 20px;
+  width: 100px;
+  background-color: #546f87;
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 10px;
+  padding: 5px;
+  text-align: center;
+}
+.doctorGuides {
+  margin-left: 120px;
+  margin-top: 15px;
+}
+.medicineListLabel {
+  position: relative;
+  top: 21px;
+  left: 49px;
+  height: 37px;
+  width: 163px;
+  background-color: #546f87;
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 10px;
+}
+.medicineListLabel p {
+  text-align: center;
+  padding: 5px;
+  font-size: 20px;
+}
+.prescribeMedicine {
+  height: 200px;
+  width: 700px;
+  background-color: #ffffff;
+  border-radius: 15px;
+}
+.prescribeMedicine {
+  display: flex;
+  flex-direction: row;
+}
+.drugList {
+  margin-top: 50px;
+  margin-left: 20px;
+}
+.drugList input {
+  width: 250px;
+  outline: 0;
+  border-width: 0 0 2px;
+}
+
+.doses {
+  margin-top: 50px;
+  margin-left: 20px;
+}
+.doses input {
+  outline: 0;
+  border-width: 0 0 2px;
+  width: 70px;
+}
+.condition {
+  margin-top: 49px;
+  margin-left: 20px;
+}
+.condition select {
+  outline: 0;
+  border-width: 0 0 2px;
+  width: 125px;
+}
+
+.duration {
+  margin-top: 50px;
+  margin-left: 20px;
+}
+.duration input {
+  outline: 0;
+  border-width: 0 0 2px;
+  width: 80px;
+}
+.duration select {
+  outline: 0;
+  border-width: 0 0 0;
+  width: 70px;
+  margin-top: -2px;
+}
+
+.drugAddButton {
+  position: relative;
+  top: -68px;
+  left: 300px;
+  width: 100px;
+  padding: 8px;
+  background-color: #1b4d89;
+  border: none;
+  border-radius: 15px;
+}
+.drugAddButton a {
+  font-size: 20px;
+  color: #ffffff;
+  text-decoration: none;
+}
+.medicineList {
+  height: 350px;
+  width: 700px;
+  background-color: #ffffff;
+  border-radius: 15px;
+}
+.actionButtons {
+  text-align: center;
+  margin-top: 80px;
+}
+.actionButtons button {
+  background-color: #1b4d89;
+  width: 200px;
+  height: 50px;
+  border: none;
+  border-radius: 15px;
+  margin: 0px 20px;
+}
+.actionButtons button a {
+  text-decoration: none;
+  text-align: center;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 15px;
+}
+
+.actionButtons button:hover {
+  background-color: #1c7635;
+}
+#displayDiv {
+  padding-top: 40px;
+  padding-left: 80px;
+}
+footer {
+  position: relative;
+  bottom: 0;
+  height: 60px;
+  width: 100%;
+  background-color: #406882;
+}
+
+footer p {
+  padding-top: 25px;
+  text-align: center;
+  color: #ffffff;
+}

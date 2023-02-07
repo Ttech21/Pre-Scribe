@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./registration.css" />
+    <title>Pre-Scribe</title>
+  </head>
+  <body>
+    <div class="registrationForm">
+      <h2>Create Account</h2>
+      <form action="/noaction.php" method="post" class="form">
+        <div class="inputGroup">
+          <div class="icon">
+            <i class="fas fa-user"></i>
+          </div>
+          <input type="text" class="inputBox" placeholder="Full Name" />
+        </div>
+        <div class="inputGroup">
+          <div class="icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <input type="email" class="inputBox" placeholder="Email" />
+        </div>
+        <div class="inputGroup">
+          <div class="icon">
+            <i class="fas fa-phone"></i>
+          </div>
+          <input type="number" class="inputBox" placeholder="Phone Number" />
+        </div>
+        <div class="inputGroup">
+          <div class="icon">
+            <i class="fas fa-lock"></i>
+          </div>
+          <input
+            type="password"
+            class="inputBox"
+            id="password"
+            placeholder="Password"
+          />
+          <i
+            class="fas fa-eye-slash show-hide-icon"
+            onclick="showHidePassword()"
+          ></i>
+        </div>
+        <div class="inputGroup">
+          <div class="icon">
+            <i class="fas fa-lock"></i>
+          </div>
+          <input
+            type="password"
+            class="inputBox"
+            id="password"
+            placeholder="Confirm Password"
+          />
+          <i
+            class="fa-solid fa-eye-slash show-hide-icon"
+            onclick="showPassword()"
+          ></i>
+        </div>
+        <p>Already have an Account? <a href="./loginPage.html">Sign In</a></p>
+        <button type="submit" class="btn">
+          <a href="./home.html">Register</a>
+        </button>
+      </form>
+    </div>
+    <script src="./registration.js"></script>
+  </body>
+</html>
