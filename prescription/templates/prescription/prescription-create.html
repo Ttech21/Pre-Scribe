@@ -1,11 +1,48 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+
+    <div class="container">
     <form method="POST">
-    {% csrf_token %}
-    {{ prescription_form.as_p }}
-    {{ medicine_usage_form.as_p }}
-    {{ patient_form.as_p }}
-    <input type="submit" value="submit">
-    </form>
+        {% csrf_token %}
+      <div class="row">
+        <div class="col col-lg-3">
+          {{ prescription_form.as_p }}
+            <label for="investigation">Investigation:</label>
+            <textarea name="investigation" cols="40" rows="10" id="investigation"></textarea>
+            <label for="advice">Advice:</label>
+            <textarea name="advice" cols="40" rows="10" id="advice"></textarea>
+        </div>
+        <div class="col col-lg-6">
+          {{ medicine_usage_form.as_p }}
+          <button id="medicine-add" value="add">Add</button>
+
+            <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Medicine</th>
+      <th scope="col">Dose</th>
+      <th scope="col">Instruction</th>
+      <th scope="col">Duration</th>
+    </tr>
+  </thead>
+  <tbody id="table-body">
+
+  </tbody>
+</table>
+
+        </div>
+        <div class="col col-lg-3">
+          {{ patient_form.as_p }}
+        {{ initial_examination_form.as_p }}
+        <input type="submit" value="submit">
+        <button id="prescription-view">View</button>
+        </div>
+
+      </div>
+     </form>
+
+</div>
+
 {% endblock content %}
