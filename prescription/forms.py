@@ -94,12 +94,17 @@ class ProfileForm(ModelForm):
         model=Profile
         fields = '__all__'
         exclude = ['user','user_name','slug']
+        widgets = {
+            'degree': Textarea(attrs={'cols': 40, 'rows': 6}),
+        }
 
     def __init__(self, *args, **kwargs):
         super(ProfileForm, self).__init__(*args, **kwargs)
-        self.fields['name'].widget.attrs.update({"class": "Medical"})
+        for label,field in self.fields.items():
+            field.widget.attrs.update({"class":"Medical"})
         self.fields['email'].widget.attrs.update({"class": "Email"})
-
+        self.fields['degree'].widget.attrs.update({"class": ""})
+        self.fields['profile_picture'].widget.attrs.update({"class": ""})
 class FileUploadForm(ModelForm):
     class Meta:
         model = FileUpload

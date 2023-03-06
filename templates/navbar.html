@@ -4,12 +4,24 @@
           <i class="fa-sharp fa-solid fa-stethoscope"></i
           ><a href="#">Pre-Scribe</a>
         </p>
-        <li><a href="{% url 'home' %}">Home</a></li>
-        <li><a href="./profile.html">Profile</a></li>
+          <li><a href="{% url 'home' %}">Home</a></li>
+
+          {% if  request.user.is_authenticated %}
+            <li><a href="{% url 'profile' %}">Profile</a></li>
+          {% endif %}
+
         <li><a href="">About Us</a></li>
         <li><a href="">Our Services</a></li>
-        <button type="submit" class="btn">
-          <a href="{% url 'logout' %}">Sign Out</a>
-        </button>
+
+      {% if request.user.is_authenticated %}
+            <button type="submit" class="btn">
+                <a href="{% url 'logout' %}">Sign Out</a>
+            </button>
+       {% else %}
+           <button type="submit" class="btn">
+                <a href="{% url 'login' %}">Login</a>
+            </button>
+      {% endif %}
+
       </ul>
 </nav>

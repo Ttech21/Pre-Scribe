@@ -13,7 +13,7 @@
           <li><a href="#">Edit Info</a></li>
         </ul>
         <hr />
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="inputGroup">
             <div class="labelText justifyInputMedical">
@@ -29,9 +29,51 @@
             {{ form.email }}
           </div>
 
+          <div class="inputGroup">
+            <div class="labelText justifyInputMedical">
+              <label for="{{ form.degree.name }}">{{ form.degree.label }}</label>
+            </div>
+            {{ form.degree }}
+          </div>
 
-          {{ form.as_p }}
-            <input type="submit" value="Submit">
+           <div class="inputGroup">
+            <div class="labelText justifyInputMedical">
+              <label for="{{ form.speciality.name }}">{{ form.speciality.label }}</label>
+            </div>
+            {{ form.speciality }}
+          </div>
+
+          <div class="inputGroup">
+            <div class="labelText justifyInputMedical">
+              <label for="{{ form.hospital_name.name }}">{{ form.hospital_name.label }}</label>
+            </div>
+            {{ form.hospital_name }}
+          </div>
+
+         <div class="inputGroup">
+            <div class="labelText justifyInputMedical">
+              <label for="{{ form.post.name }}">{{ form.post.label }}</label>
+            </div>
+            {{ form.post }}
+          </div>
+
+           <div class="inputGroup">
+            <div class="labelText justifyInputMedical">
+              <label for="{{ form.chamber.name }}">{{ form.chamber.label }}</label>
+            </div>
+            {{ form.chamber }}
+          </div>
+
+           <div class="inputGroup">
+            <div class="labelText justifyInputMedical">
+              <label for="{{ form.profile_picture.name }}">{{ form.profile_picture.label }}</label>
+            </div>
+
+          </div>
+
+            {{ form.profile_picture }}
+
+          <input type="submit" class="editProfile" value="Submit">
         </form>
       </div>
     </main>

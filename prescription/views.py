@@ -22,7 +22,7 @@ def profile_edit(request):
     profile = request.user.profile
     profile_form = ProfileForm(instance=profile)
     if request.method == "POST":
-        profile_form = ProfileForm(request.POST,instance=profile)
+        profile_form = ProfileForm(request.POST,request.FILES,instance=profile)
         if profile_form.is_valid():
             profile_form.save()
             return redirect('profile')
