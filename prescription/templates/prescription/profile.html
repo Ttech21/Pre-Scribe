@@ -1,10 +1,84 @@
-{% extends 'base.html' %}
+{% extends 'base.html'%}
+{% load static %}
+
+{% block headerContent %}
+    <title>Doctor's Profile</title>
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock headerContent %}
 
 {% block content %}
+<main>
+      <div class="photo">
+        <div class="card">
+          <img src="{{ profile.profile_picture.url }}" alt="profile photo" />
+          <h2><a href="#">{{ profile.name}}</a></h2>
+            <a href="#"><button type="submit">Change Password</button></a>
+        </div>
+      </div>
+
+      <div class="userInfo">
+        <ul class="editOptions">
+          <li><a href="#">Personal Info</a></li>
+        </ul>
+        <hr />
+        <form>
+
+          <div class="inputGroup">
+            <div class="labelText">
+              <label for="qualification">Qualifications:</label>
+            </div>
+            <textarea
+              name="qualification"
+              class="inputBox"
+              cols="30"
+              rows="5"
+              disabled="true"
+            >{{ profile.degree }}</textarea>
+          </div>
 
 
+          <div class="inputGroup">
+            <div class="labelText justifyInputMedical">
+              <label for="speciality">Speciality:</label>
+            </div>
+            <input type="text" name="speciality" class="Medical" value="{{ profile.speciality }}" disabled="true"/>
+          </div>
 
+          <div class="inputGroup">
+            <div class="labelText justifyInputMedical">
+              <label for="hospital">Hospital:</label>
+            </div>
+            <input type="text" name="hospital" class="Medical" value="{{ profile.hospital_name }}" disabled="true" />
+          </div>
 
+          <div class="inputGroup">
+            <div class="labelText justifyInputMedical">
+              <label for="post">Post:</label>
+            </div>
+            <input type="text" name="post" class="Medical" value="{{ profile.post }}" disabled="true"/>
+          </div>
+
+          <div class="inputGroup">
+            <div class="labelText justifyInputEmail">
+              <label for="email">Email:</label>
+            </div>
+            <input type="email" name="email" class="Email" value="{{ profile.email }}" disabled="true"/>
+          </div>
+
+          <div class="inputGroup">
+            <div class="labelText justifyInputPhone">
+              <label for="phone">Phone:</label>
+            </div>
+            <input type="number" name="phone" class="Phone" disabled="true"/>
+          </div>
+          <button type="submit" class="editProfile">
+            <a href="{% url 'profile-edit' %}">Edit Profile</a>
+          </button>
+        </form>
+      </div>
+    </main>
 {% endblock content %}
 
+{% block script %}
 
+{% endblock script %}

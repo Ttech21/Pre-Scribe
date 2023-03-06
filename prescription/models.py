@@ -12,7 +12,7 @@ class Profile(models.Model):
     user_name = models.CharField(max_length=200)
     email = models.EmailField()
     profile_picture = models.ImageField(upload_to='profile-pictures/', default='profile-pictures/user-default.png')
-    degree = models.CharField(max_length=500, blank=True, null=True)
+    degree = models.TextField(max_length=500, blank=True, null=True)
     speciality = models.CharField(max_length=100, blank=True, null=True)
     post = models.CharField(max_length=100, blank=True, null=True)
     hospital_name = models.CharField(max_length=100, blank=True, null=True)
@@ -44,10 +44,11 @@ class Medicine(models.Model):
     id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
 
     def __str__(self):
-        return self.name + " " + self.group
+        return self.name + " " + self.group + " " + self.type
 
 
 class MedicineDose(models.TextChoices):
+    EMPTY_LABEL = '', 'Dose'
     Option1 = '0+0+1','0+0+1'
     Option2 = '0+1+0','0+1+0'
     Option3 = '1+0+0','1+0+0'
@@ -58,16 +59,18 @@ class MedicineDose(models.TextChoices):
 
 
 class MedicineInstruction(models.TextChoices):
-    AfterMeal = 'AFTER MEAL','After Meal'
-    BeforeMeal = 'BEFORE MEAL','Before Meal'
+    EMPTY_LABEL = '', 'Select Condition'
+    AfterMeal = 'After Meal','After Meal'
+    BeforeMeal = 'Before Meal','Before Meal'
 
 
 class MedicineDuration(models.TextChoices):
-    Option1 = '7 DAYS', '7 Days'
-    Option2 = '10 DAYS', '10 Days'
-    Option3 = '15 DAYS', '15 Days'
-    Option4 = '20 DAYS', '20 Days'
-    Option5 = '1 MONTH', '1 Month'
+    EMPTY_LABEL = '', 'Duration '
+    Option1 = '7 Days', '7 Days'
+    Option2 = '10 Days', '10 Days'
+    Option3 = '15 Days', '15 Days'
+    Option4 = '20 Days', '20 Days'
+    Option5 = '1 Days', '1 Month'
 
 
 
@@ -90,14 +93,21 @@ class Investigation(models.Model):
     id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
 
 
+
+class Gender(models.TextChoices):
+    EMPTY_LABEL = '', 'Select Gender '
+    Male = 'Male', 'Male'
+    Female = 'Female', 'Female'
+    Other = 'Other', 'Other'
+
 class Patient(models.Model):
-    name = models.CharField(max_length=100)
-    age = models.PositiveIntegerField(default=0)
-    phone_number = models.CharField(max_length=20)
+    name = models.CharField(max_length=100,blank=True,null=True)
+    age = models.PositiveIntegerField(blank=True,null=True)
+    gender = models.CharField(blank=True,null=True,choices=Gender.choices,max_length=10)
+    phone_number = models.CharField(blank=True,null=True,max_length=20)
     id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
 
-    def __str__(self):
-        return self.name
+
 
 
 class InitialExamination(models.Model):
@@ -119,7 +129,10 @@ class Prescription(models.Model):
     id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
 
     def __str__(self):
-        return self.patient.name
+        if self.patient and self.patient.name:
+            return self.patient.name
+        else:
+            return str(self.id)
 
 
 

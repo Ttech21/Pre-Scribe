@@ -27,7 +27,7 @@ function getCookie(name) {
 
 
 
-let medicineAdd = document.getElementById("medicine-add")
+let medicineAdd = document.getElementById("drugAddButton")
 let prescriptionView = document.getElementById("prescription-view")
 
 const medicines =[]
@@ -306,7 +306,7 @@ get_investigation()
       });
 
 
-    $( "#advice" )
+    $( "#generalAdvice" )
       // don't navigate away from the field on tab when selecting an item
       .on( "keydown", function( event ) {
         if ( event.keyCode === $.ui.keyCode.TAB &&

@@ -1,0 +1,137 @@
+{% extends 'base.html'%}
+{% load static %}
+
+{% block headerContent %}
+    <title>Edit Profile</title>
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock headerContent %}
+
+{% block content %}
+    <main>
+      <div class="userInfo">
+        <ul class="editOptions">
+          <li><a href="#">Edit Info</a></li>
+        </ul>
+        <hr />
+        <form method="post">
+            {% csrf_token %}
+            <div class="inputGroup">
+            <div class="labelText justifyInputMedical">
+              <label for="{{ form.name.name }}">{{ form.name.label}}</label>
+            </div>
+            {{ form.name }}
+          </div>
+
+            <div class="inputGroup">
+            <div class="labelText justifyInputMedical">
+              <label for="{{ form.email.name }}">{{ form.email.label }}</label>
+            </div>
+            {{ form.email }}
+          </div>
+
+
+          {{ form.as_p }}
+            <input type="submit" value="Submit">
+        </form>
+      </div>
+    </main>
+{% endblock content %}
+
+{% block script %}
+
+{% endblock script %}
+
+
+
+{#<main>#}
+{#      <div class="photo">#}
+{#        <div class="card">#}
+{#          <img src="images/miraj.jpg" alt="profile photo" />#}
+{#          <h2><a href="#">Dr. Miraj Hossain</a></h2>#}
+{#          <button type="submit">Change Profile Photo</button>#}
+{#        </div>#}
+{#      </div>#}
+{#      <div class="userInfo">#}
+{#        <ul class="editOptions">#}
+{#          <li><a href="#">Personal Info</a></li>#}
+{#          <li><a href="#">Privacy</a></li>#}
+{#        </ul>#}
+{#        <hr />#}
+{#        <form action="action.php" method="post">#}
+{#          <div class="inputGroup">#}
+{#            <div class="labelText nameLabel justifyInputName">#}
+{#              <label for="name">Name:</label>#}
+{#            </div>#}
+{#            <div class="inputBox">#}
+{#              <span class="prefix">Dr.</span>#}
+{#              <input type="text" name="name" />#}
+{#            </div>#}
+{#          </div>#}
+{#          <div class="inputGroup">#}
+{#            <div class="labelText">#}
+{#              <label for="qualification">Qualifications:</label>#}
+{#            </div>#}
+{#            <textarea#}
+{#              name="qualification"#}
+{#              class="inputBox"#}
+{#              cols="30"#}
+{#              rows="5"#}
+{#            ></textarea>#}
+{#          </div>#}
+{#          <div class="inputGroup">#}
+{#            <div class="labelText justifyInputMedical">#}
+{#              <label for="medical">Medical:</label>#}
+{#            </div>#}
+{#            <input type="text" name="medical" class="Medical" />#}
+{#          </div>#}
+{#          <div class="inputGroup">#}
+{#            <div class="labelText justifyInputSchedule">#}
+{#              <label for="schedule">Schedule:</label>#}
+{#            </div>#}
+{#            <label for="from">From:</label>#}
+{#            <select id="from" name="from">#}
+{#              <option value="Saturday">Saturday</option>#}
+{#              <option value="Sunday">Sunday</option>#}
+{#              <option value="Monday">Monday</option>#}
+{#              <option value="Tuesday">Tuesday</option>#}
+{#              <option value="Wednesday">Wednesday</option>#}
+{#              <option value="Thursday">Thursday</option>#}
+{#              <option value="Friday">Friday</option>#}
+{#            </select>#}
+{#            <label for="To">To:</label>#}
+{#            <select id="To" name="To">#}
+{#              <option value="Saturday">Saturday</option>#}
+{#              <option value="Sunday">Sunday</option>#}
+{#              <option value="Monday">Monday</option>#}
+{#              <option value="Tuesday">Tuesday</option>#}
+{#              <option value="Wednesday">Wednesday</option>#}
+{#              <option value="Thursday">Thursday</option>#}
+{#              <option value="Friday">Friday</option>#}
+{#            </select>#}
+{#            <label for="appt">At:</label>#}
+{#            <input type="time" id="appt" name="appt" />#}
+{#            <label for="appt">To:</label>#}
+{#            <input type="time" id="appt" name="appt" />#}
+{#          </div>#}
+{#          <div class="inputGroup">#}
+{#            <div class="labelText justifyInputEmail">#}
+{#              <label for="email">Email:</label>#}
+{#            </div>#}
+{#            <input type="email" name="email" class="Email" />#}
+{#          </div>#}
+{#          <div class="inputGroup">#}
+{#            <div class="labelText justifyInputPhone">#}
+{#              <label for="phone">Phone:</label>#}
+{#            </div>#}
+{#            <input type="number" name="phone" class="Phone" />#}
+{#          </div>#}
+{#          <button type="submit" class="editProfile">#}
+{#            <a href="#">Edit Profile</a>#}
+{#          </button>#}
+{#          <button type="submit" class="saveInfo">#}
+{#            <a href="#">Save Info</a>#}
+{#          </button>#}
+{#        </form>#}
+{#      </div>#}
+{#    </main>#}
+{##}
