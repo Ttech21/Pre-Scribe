@@ -1,19 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <div class="container">
-        <div class="row">
-            <div class="container">
-                kdjflakdsj
-            </div>
-        </div>
-        <div class="row">
-            <div class="col col-lg-3"></div>
-        </div>
-    </div>
-</body>
-</html>
+<nav>
+      <ul class="navbar">
+        <p>
+          <i class="fa-sharp fa-solid fa-stethoscope"></i
+          ><a href="#">Pre-Scribe</a>
+        </p>
+          <li><a href="{% url 'home' %}">Home</a></li>
+
+          {% if  request.user.is_authenticated %}
+            <li><a href="{% url 'profile' %}">Profile</a></li>
+          {% endif %}
+
+        <li><a href="">About Us</a></li>
+        <li><a href="">Our Services</a></li>
+
+      {% if request.user.is_authenticated %}
+            <button type="submit" class="btn">
+                <a href="{% url 'logout' %}">Sign Out</a>
+            </button>
+       {% else %}
+           <button type="submit" class="btn">
+                <a href="{% url 'login' %}">Login</a>
+            </button>
+      {% endif %}
+
+      </ul>
+</nav>

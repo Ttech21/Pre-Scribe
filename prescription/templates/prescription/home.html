@@ -1,0 +1,21 @@
+{% extends 'base.html'%}
+{% load static %}
+
+{% block headerContent %}
+    <title>PreScribe Home</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock headerContent %}
+
+{% block content %}
+      <div class="headline">
+      <i class="fa-sharp fa-solid fa-stethoscope"></i>
+      <h1>Welcome to Pre-Scribe</h1>
+      <a href="./makePrescription.html"
+        ><input class="createPresbtn" type="button" value="+ &#x00A;Create New"
+      /></a>
+    </div>
+{% endblock content %}
+
+{% block script %}
+
+{% endblock script %}

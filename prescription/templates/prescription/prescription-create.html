@@ -1,48 +1,162 @@
-{% extends 'base.html' %}
+{% extends 'base.html'%}
+{% load static %}
+
+{% block headerContent %}
+    <title>Create Prescription</title>
+        <link rel="stylesheet" href="{% static 'css/prescription-create.css' %}">
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+
+{% endblock headerContent %}
 
 {% block content %}
-
-
-    <div class="container">
     <form method="POST">
-        {% csrf_token %}
-      <div class="row">
-        <div class="col col-lg-3">
-          {{ prescription_form.as_p }}
-            <label for="investigation">Investigation:</label>
-            <textarea name="investigation" cols="40" rows="10" id="investigation"></textarea>
-            <label for="advice">Advice:</label>
-            <textarea name="advice" cols="40" rows="10" id="advice"></textarea>
+    {% csrf_token %}
+
+      <main>
+      <div class="patient">
+        <div class="patientInfo">
+          <div class="labelText">
+            <label for="PatientName">Patient Name:</label>
+          </div>
+            {{ patient_form.name }}
         </div>
-        <div class="col col-lg-6">
-          {{ medicine_usage_form.as_p }}
-          <button id="medicine-add" value="add">Add</button>
-
-            <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Medicine</th>
-      <th scope="col">Dose</th>
-      <th scope="col">Instruction</th>
-      <th scope="col">Duration</th>
-    </tr>
-  </thead>
-  <tbody id="table-body">
-
-  </tbody>
-</table>
-
+        <div class="patientInfo">
+          <div class="labelText">
+            <label for="Gender">Gender:</label>
+          </div>
+        {{ patient_form.gender }}
         </div>
-        <div class="col col-lg-3">
-          {{ patient_form.as_p }}
-        {{ initial_examination_form.as_p }}
-        <input type="submit" value="submit">
-        <button id="prescription-view">View</button>
+        <div class="patientInfo">
+          <div class="labelText">
+            <label for="age">Age:</label>
+          </div>
+          {{ patient_form.age }}
         </div>
-
+        <div class="patientInfo">
+          <div class="labelText">
+            <label for="PhoneNumber">Phone Number:</label>
+          </div>
+          {{ patient_form.phone_number }}
+        </div>
+        <div class="patientInfo">
+          <div class="labelText">
+            <label for="Date">Date:</label>
+          </div>
+          <input type="date" id="Date" name="Date" />
+        </div>
       </div>
-     </form>
+      <hr />
+      <div class="prescriptionBody">
+        <div class="patientQueries">
+          <div class="textarea-container">
+            <label id="Querieslabel">Complaints</label>
+              {{ prescription_form.complaints }}
+          </div>
+          <div class="textarea-container">
+            <label id="Querieslabel2">Diagnosis</label>
+            {{ prescription_form.diagnosis }}
+          </div>
+          <div class="textarea-container">
+            <label id="Querieslabel3">Investigation</label>
+            <textarea name="investigation"  id="investigation">{% for investigation in prescription.investigation.all %}{{investigation.name}},{% endfor %}</textarea>
+          </div>
+        </div>
+        <div class="doctorGuides">
+          <div class="insertMedicineSection">
+            <div class="medicineListLabel">
+              <p>Insert Medicine</p>
+            </div>
+            <div class="prescribeMedicine">
+              <div class="drugList">
+                  {{ medicine_usage_form.medicine }}
+              </div>
+              <div class="doses">
+                  {{ medicine_usage_form.dose }}
+              </div>
+              <div class="condition">
+                {{ medicine_usage_form.instruction }}
+              </div>
+              <div class="duration">
+                {{ medicine_usage_form.duration }}
+              </div>
+            </div>
+            <button type="button" class="drugAddButton" onclick="displayInput('{{prescription}}')">Add</button>
+          </div>
+          <div class="medicineListSection">
+            <div class="medicineListLabel">
+              <p>Medicine List</p>
+            </div>
+            <div class="medicineList" id="displayDiv">
+                <ol id="addedMedicines">
+                {% for usage in prescription.medicineusage_set.all %}
+                    <li>{{ usage.medicine }} | {{ usage.dose }} | {{ usage.instruction }} | {{ usage.duration }} </li><br>
+                {% endfor %}
+                </ol>
+            </div>
+          </div>
+          <div class="adviceSection">
+            <div class="medicineListLabel"><p>General Advice</p></div>
+            <textarea name="generalAdvice" id="generalAdvice">{% for advice in prescription.advice.all %}{{advice}},{% endfor %}</textarea>
+          </div>
+        </div>
+      </div>
+      <div class="actionButtons">
+        <button><a href="">Create New</a></button>
+          <button type="submit"><span>Proceed to Print</span></button>
+      </div>
+    </main>
 
-</div>
+    </form>
 
 {% endblock content %}
+
+{% block script %}
+        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+        <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="{% static 'js/prescription-create.js' %}"></script>
+{% endblock script %}
+
+
+{##}
+{##}
+{#    <div class="container">#}
+{#    <form method="POST">#}
+{#        {% csrf_token %}#}
+{#      <div class="row">#}
+{#        <div class="col col-lg-3">#}
+{#          {{ prescription_form.as_p }}#}
+{#            <label for="investigation">Investigation:</label>#}
+{#            <textarea name="investigation" cols="40" rows="10" id="investigation"></textarea>#}
+{#            <label for="advice">Advice:</label>#}
+{#            <textarea name="advice" cols="40" rows="10" id="advice"></textarea>#}
+{#        </div>#}
+{#        <div class="col col-lg-6">#}
+{#          {{ medicine_usage_form.as_p }}#}
+{#          <button id="medicine-add" value="add">Add</button>#}
+{##}
+{#            <table class="table">#}
+{#  <thead>#}
+{#    <tr>#}
+{#      <th scope="col">Medicine</th>#}
+{#      <th scope="col">Dose</th>#}
+{#      <th scope="col">Instruction</th>#}
+{#      <th scope="col">Duration</th>#}
+{#    </tr>#}
+{#  </thead>#}
+{#  <tbody id="table-body">#}
+{##}
+{#  </tbody>#}
+{#</table>#}
+{##}
+{#        </div>#}
+{#        <div class="col col-lg-3">#}
+{#          {{ patient_form.as_p }}#}
+{#        {{ initial_examination_form.as_p }}#}
+{#        <input type="submit" value="submit">#}
+{#        <button id="prescription-view">View</button>#}
+{#        </div>#}
+{##}
+{#      </div>#}
+{#     </form>#}
+{##}
+{#</div>#}

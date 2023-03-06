@@ -1,0 +1,270 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  font-family: "ABeeZee", sans-serif;
+}
+
+.navbar {
+  height: 60px;
+  background-color: #406882;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.navbar p {
+  position: absolute;
+  left: 40px;
+  font-size: 40px;
+  color: #ffffff;
+}
+.navbar p a {
+  text-decoration: none;
+  font-size: 35px;
+  color: #ffffff;
+  font-weight: normal;
+}
+
+.navbar li {
+  list-style-type: none;
+  width: 100px;
+}
+
+.navbar li a {
+  font-size: 15px;
+  color: #ffffff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.navbar li:hover {
+  text-decoration-line: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 8px;
+  cursor: pointer;
+}
+.btn {
+  position: absolute;
+  right: 20px;
+  background-color: #1b4d89;
+  border: none;
+  width: 90px;
+  height: 32px;
+  border-radius: 5px;
+}
+.btn a {
+  padding: 10px;
+  font-size: 15px;
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: bold;
+}
+.btn:hover {
+  background-color: #1c7635;
+}
+
+main {
+  display: flex;
+  flex-direction: row;
+}
+.card {
+  width: 100%;
+  margin-left: 80%;
+  margin-top: 20%;
+  text-align: center;
+}
+.card img {
+  padding-top: 20px;
+  height: 45%;
+  width: 45%;
+  border-radius: 50%;
+}
+.card img,
+h2 {
+  margin-bottom: 20px;
+}
+.card h2 a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+.card button {
+  background-color: #1b4d89;
+  color: #ffffff;
+  border: none;
+  padding: 15px;
+  font-size: 15px;
+  border-radius: 10px;
+  width: 230px;
+  margin-bottom: 20px;
+}
+.card button:hover {
+  background-color: #1c7635;
+}
+.userInfo {
+  width: 100%;
+  height: 100%;
+  margin-left: 250px;
+  margin-right: 10%;
+  margin-top: 2%;
+}
+
+.editOptions {
+  display: flex;
+  flex-direction: row;
+}
+.editOptions li {
+  list-style-type: none;
+  width: 20%;
+  margin-left: 15px;
+}
+
+.editOptions li a {
+  text-decoration: none;
+  font-size: 15px;
+  color: black;
+  font-weight: lighter;
+}
+hr {
+  margin-top: 10px;
+}
+form {
+  margin-top: 30px;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
+}
+label {
+  margin-left: 5px;
+  font-weight: bold;
+}
+select {
+  margin-left: 5px;
+}
+
+.Email,
+.Phone,
+.Medical {
+  height: 30px;
+  width: 413px;
+  border-radius: 5px;
+}
+input,
+textarea {
+  margin-left: 10px;
+  background: #ffffff;
+  border: 1px solid #777;
+}
+input,
+textarea:hover {
+  border: 1px solid #a0a0a0;
+}
+footer {
+  position: fixed;
+  bottom: 0;
+  height: 60px;
+  width: 100%;
+  background-color: #406882;
+}
+
+footer p {
+  padding-top: 25px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.inputBox {
+  display: flex;
+  align-items: center;
+  width: 400px;
+  background: rgb(251, 251, 251);
+  border: 1px solid #a0a0a0;
+  border-radius: 4px;
+  padding-left: 0.5rem;
+  overflow: hidden;
+  font-family: sans-serif;
+}
+
+.inputBox .prefix {
+  font-weight: bold;
+  font-size: 14px;
+  color: #020202;
+}
+
+.inputBox input {
+  flex-grow: 1;
+  font-size: 14px;
+  background: #ffffff;
+  border: none;
+  outline: none;
+  padding: 0.5rem;
+}
+
+.inputBox:focus-within {
+  border-color: #777;
+}
+.nameLabel {
+  margin-top: 6px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.justifyInputName {
+  margin-left: 55px;
+}
+.justifyInputMedical {
+  margin-left: 38px;
+  margin-top: 6px;
+}
+.justifyInputSchedule {
+  margin-left: 36px;
+}
+.justifyInputEmail {
+  margin-left: 52px;
+  margin-top: 6px;
+}
+.justifyInputPhone {
+  margin-left: 50px;
+  margin-top: 6px;
+}
+
+.editProfile {
+  background-color: #1b4d89;
+  font-size: 13px;
+  font-weight: normal;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  margin-left: 200px;
+}
+
+.saveInfo {
+  background-color: #1b4d89;
+  font-size: 13px;
+  font-weight: normal;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  margin-left: 50px;
+}
+.saveInfo,
+.editProfile {
+  margin-top: 20px;
+}
+.saveInfo a {
+  text-decoration: none;
+  color: #ffffff;
+}
+.editProfile a {
+  text-decoration: none;
+  color: #ffffff;
+}
+.editProfile:hover {
+  background-color: #1c7635;
+}
+
+.saveInfo:hover {
+  background-color: #1c7635;
+}

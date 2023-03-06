@@ -1,0 +1,39 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+.headline {
+  margin-top: 100px;
+  text-align: center;
+}
+.headline i {
+  font-size: 150px;
+  margin-bottom: 30px;
+}
+.headline h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.createPresbtn {
+  background-color: #1b4d89;
+  width: 120px;
+  height: 60px;
+  border: none;
+  border-radius: 15px;
+  margin: 0px 20px;
+}
+input {
+  text-decoration: none;
+  text-align: center;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.createPresbtn:hover {
+  background-color: #1c7635;
+}
+
+
